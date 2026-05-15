@@ -78,7 +78,7 @@ export default function Home() {
     if (system) body.system = system;
     const res = await fetch("/api/chat", {
       method: "POST",
-      headers: { "content-type": "application/json", "x-anthropic-key": anthropicKey },
+      headers: { "content-type": "application/json", "x-gemini-key": anthropicKey },
       body: JSON.stringify(body),
     });
     const data = await res.json();
@@ -191,7 +191,7 @@ export default function Home() {
           <p style={{color:"#8aaccc",fontSize:14}}>API anahtarlarını gir, başla!</p>
         </div>
         {[
-          {label:"🔑 Anthropic API Key", hint:"console.anthropic.com → API Keys", val:anthropicKey, set:setAnthropicKey, ph:"sk-ant-..."},
+          {label:"🔑 Gemini API Key", hint:"aistudio.google.com → Get API Key", val:anthropicKey, set:setAnthropicKey, ph:"AIza..."},
           {label:"🎤 OpenAI Key (ses için)", hint:"platform.openai.com → API Keys · $5 ücretsiz kredi", val:openaiKey, set:setOpenaiKey, ph:"sk-..."},
         ].map(f => (
           <div key={f.ph} style={{background:"rgba(255,255,255,.06)",borderRadius:14,padding:16,marginBottom:12,border:"1px solid rgba(255,255,255,.1)"}}>
@@ -202,7 +202,7 @@ export default function Home() {
           </div>
         ))}
         {error && <div style={{color:"#e07070",textAlign:"center",marginBottom:12,fontSize:13}}>{error}</div>}
-        <button onClick={()=>{if(!anthropicKey.trim()){setError("Anthropic key gerekli!");return;}setError("");setScreen("home");}}
+        <button onClick={()=>{if(!anthropicKey.trim()){setError("Gemini key gerekli!");return;}setError("");setScreen("home");}}
           style={{width:"100%",background:"#2d5a8e",border:"none",borderRadius:12,padding:14,color:"#fff",fontWeight:700,fontSize:16,cursor:"pointer"}}>Başla →</button>
       </div>
     </div></>
